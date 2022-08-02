@@ -3,8 +3,9 @@
 module Zspay
   class BankAccount < Zspay::Resource
     class << self
-      def index
-        get('/estabelecimentos/contas_bancarias')
+      def index(establishment_id = nil)
+        establishment = establishment_id.present? ? "#{establishment_id}/" : ''
+        get("/estabelecimentos/#{establishment}contas_bancarias")
       end
 
       def create(account)
